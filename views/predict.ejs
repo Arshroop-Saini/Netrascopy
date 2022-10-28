@@ -1,0 +1,43 @@
+<%- include("partials/gg"); -%>
+
+<nav>
+    <input type="checkbox" id="check">
+    <label for="check" class="checkbtn">
+      <i class="fas fa-bars"></i>
+    </label>
+    <label class="logo animate-charcter-head">नेत्र</label>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/predict">Predict</a></li>
+      <li><a href="/diagnosis">Diagnosis</a></li>
+      <li><a class="btn btn-primary logout" href="/<%=text%>"><%=text%></a></li>
+  </nav>
+
+  <div class="container">
+    <div style="margin-top:200px;" class="jumbotron">
+        <center>
+        <h1>Predict Diabetes</h1>
+        <h2>Please upload a clear Fundus Image using Netrascopy</h2>
+    </center>
+
+    <form action="/predict" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+        <label class="required" for="files" >Select one image at a time</label>
+        <input  accept=".jpg, .png" id="image" name="image" class="form-control" type="file" required>
+        <label class="required">Name</label>
+        <input  class="form-control" type="text" name="name" required>
+        <label class="required">Age</label>
+        <input inputmode="tel" type="number" name="age"  class="form-control" required>
+        <label class="required">Gender</label>
+        <select class="form-control " name = "gender" required>
+         <option value="" selected disabled hidden>Select</option>
+          <option value = "Male">Male</option>
+          <option value = "Female">Female</option>
+       </select>
+        <button style="margin-top:10px" class="btn btn-success" type="submit" name="button">Predict</button>
+    </div>
+    </form>
+    </div>
+  </div>
+
+<%- include("partials/footer"); -%>

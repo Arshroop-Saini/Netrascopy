@@ -1,0 +1,49 @@
+<%- include("partials/header"); -%>
+
+<nav>
+    <input type="checkbox" id="check">
+    <label for="check" class="checkbtn">
+      <i class="fas fa-bars"></i>
+    </label>
+    <label class="logo animate-charcter-head">नेत्र</label>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/predict">Predict</a></li>
+      <li><a href="/diagnosis">Diagnosis</a></li>
+      <li><a class="btn btn-primary logout" href="/<%=text%>"><%=text%></a></li>
+  </nav>
+<br><br>
+    <div style="margin-bottom: 100px;" class="container">
+<br>
+
+<div class="container">
+  <center><h1 class="animate-charcter" style="
+    font-weight: 700; font-size:
+    55px; text-align: center;
+    line-height: 1.2;">Past Diagnosis</h1></center><br>
+     <div class="jumbotron">
+      <div class="row">
+        <div class="col-md-12 text-center">
+        </div>
+      </div>
+<div class="conatiner">
+  <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4">
+  <% post.forEach(function(post){ %>
+        <div class="card text-center">
+          <img src="<%=post.imagePath%>"class="card-img-top" alt="Logo"></img>
+          <div class="card-body">
+          <h4 class="card-title" style="font-weight: 700; font-size:25px; text-align: center;"><%= post.home %></h4>
+          <% var options = { year: 'numeric', month: 'long', day: 'numeric' }; %>
+          <p><%=post.date.toLocaleDateString('en-us', options)%></p>
+          <div><span><%=post.name%></span></div>
+          <div><span><%=post.gender%>,</span> <span><%=post.age%></span></div>
+        <br>
+      <a href="<%=post.imagePath%>" style="font-weight:400; font-size: 18px;" class="btn btn-primary">View Image</a>
+          </div>
+      </div>
+<br>
+<% }) %>
+</div>
+</div>
+
+<%- include("partials/footer"); -%>
