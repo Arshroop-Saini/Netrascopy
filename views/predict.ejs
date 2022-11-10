@@ -22,8 +22,10 @@
 
     <form action="/predict" method="post" enctype="multipart/form-data">
         <div class="form-group">
-        <label class="required" for="files" >Select one image at a time</label>
-        <input  accept=".jpg, .png" id="image" name="image" class="form-control" type="file" required>
+        <!-- <label class="required" for="files" >Upload one video at a time</label>
+        <input  accept="video/*" id="video" name="video" class="form-control" type="file" required> -->
+        <label class="" for="files">Select one image at a time</label>
+        <input  accept=".jpg, .png" id="image" name="image" class="form-control" type="file">
         <label class="required">Name</label>
         <input  class="form-control" type="text" name="name" required>
         <label class="required">Age</label>
