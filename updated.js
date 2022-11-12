@@ -17,6 +17,31 @@ const path= require('path');
 const { log } = require("console");
 const axios = require("axios");
 const { range } = require("lodash");
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyCBK8LMPL1YabnsygIzuZ75SqP3Bruqq2Y",
+  authDomain: "netrascopy.firebaseapp.com",
+  projectId: "netrascopy",
+  storageBucket: "netrascopy.appspot.com",
+  messagingSenderId: "17299466664",
+  appId: "1:17299466664:web:18fd67db0187487ce8959d",
+  measurementId: "G-HH8P0WM1FV"
+};
+
+// Initialize Firebase
+const appy = initializeApp(firebaseConfig);
+const analytics = getAnalytics(appy);
+
+var database = firebase.database();
+var prediction = database.ref('prediction');
+
 
 // Using Auth0 for authentication
 const config = {
@@ -62,6 +87,7 @@ const postSchema ={
   date:{type:Date,required:false},
   description:{type:String,required:true},
 }
+
 const Post = mongoose.model("Post", postSchema);
 
 app.get('/',function (req,res) {
@@ -137,10 +163,35 @@ app.post("/predict", requiresAuth(),function(req, res){
       var day = dateObj.getUTCDate();
       var year = dateObj.getUTCFullYear();
       var value2 = year + "/" + month + "/" + day;
-     
+
+      var data = {
+        value1: value1,
+        value2: value2,
+        description1: description1,
+      }
+      prediction.push(data, finished);
+      function finished(error) {
+        if (error) {
+          console.log('ooops');
+        } else {
+          console.log('data saved!');
+        }
+      }
 })  
 } 
-
+      var ref = database.ref("prediction");
+      ref.on("value", gotData, errData);
+      function gotData(data) {
+        var prediction = data.val();
+        // Grab the keys to iterate over the object
+        var keys = Object.keys(prediction);
+      
+        for (var i = 0; i < keys.length; i++) {
+          var key = keys[keys.length];
+          // Look at each fruit object!
+          var prediction = prediction[key];
+        }
+        console.log(prediction)
       const post = new Post({
         imagePath: result.url,
         description:description1,
@@ -159,11 +210,8 @@ app.post("/predict", requiresAuth(),function(req, res){
         const x=result.prediction;
         res.redirect("/result/"+postId+"/"+x);
       }
-      }); 
-
-      const postLast= Post.find().limit(1).sort({_id:-1});
-      console.log(postLast);
-     
+      });
+    } //this is the end of firebase function
     });
   })
     });
@@ -193,16 +241,3 @@ app.get('/diagnosis',requiresAuth(),function (req,res){
 app.listen(port, function() {
     console.log(`Server started sucessfully at` + {port});
   });
-  // console.log(obj.length+1)
-  // console.log(i)
-  // if (i==obj.length+1) {
-  //   const prediction=new Prediction({
-  //     prediction:value1,
-  //     date:value2,
-  //   })
-  //   prediction.save(function(err,result){
-  //     if(!err){
-  //       console.log(result)
-  //     }
-  //   })
-  // }
