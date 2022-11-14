@@ -48,7 +48,7 @@ const config = {
   authRequired: false,
   auth0Logout: true,
   secret: 'a long, randomly-generated string stored in env',
-  baseURL: 'http://localhost:8000',
+  baseURL: 'https://netrascopy.onrender.com',
   clientID: 'Vjq6fbuba65JwyPOrEaShTFUPGkGxcq3',
   issuerBaseURL: 'https://dev-hri34pn2.us.auth0.com'
 };
@@ -112,7 +112,7 @@ app.post("/predict", requiresAuth(),function(req, res){
       // Flask API Request here
       var options = {
         'method': 'POST',
-        'url': 'http://localhost:5050/generate',
+        'url': 'https://frames-api-netrascopy.onrender.com/generate',
         'headers': {
         },
         formData: {
