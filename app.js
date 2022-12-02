@@ -48,7 +48,7 @@ const config = {
   authRequired: false,
   auth0Logout: true,
   secret: 'a long, randomly-generated string stored in env',
-  baseURL: 'https://netrascopy.onrender.com',
+  baseURL: 'http://localhost:8000',
   clientID: 'Vjq6fbuba65JwyPOrEaShTFUPGkGxcq3',
   issuerBaseURL: 'https://dev-hri34pn2.us.auth0.com'
 };
