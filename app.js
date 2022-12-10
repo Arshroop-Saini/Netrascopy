@@ -60,7 +60,7 @@ cloudinary.config({
   api_secret: 'aG5zKoQB1iX2tnqZVfmUsqVOKNU' 
 });
 
-const port= process.env.PORT || 8000;
+const port= process.env.PORT || 9200;
 const app = express();
 app.use(auth(config));
 app.use(fileUpload({
