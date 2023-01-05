@@ -1,0 +1,25 @@
+<%- include("partials/gg") -%>
+<nav>
+    <input type="checkbox" id="check">
+    <label for="check" class="checkbtn">
+      <i class="fas fa-bars"></i>
+    </label>
+    <label class="logo animate-charcter-head">नेत्र</label>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/predict">Predict</a></li>
+      <li><a href="/diagnosis">Diagnosis</a></li>
+      <li><a href="/research-paper">Research</a></li>
+      <li><a class="btn btn-primary logout" href="/<%=text%>"><%=text%></a></li>
+  </nav>
+
+<div class="container">
+<div style="margin-top:100px; height: 100%;" class="jumbotron">
+<center>
+    <h1 style="color: rgb(9, 140, 254)">NETRASCOPY</h1>
+    <h3>Stage specific early detection of Diabetic Retinopathy using ML and CNN</h3>
+    <iframe src="http://docs.google.com/gview?url=http://infolab.stanford.edu/pub/papers/google.pdf&embedded=true" style="width:600px; height:800px;" frameborder="0"></iframe>
+</center>
+</div>
+</div>
+<%- include("partials/footer"); -%>

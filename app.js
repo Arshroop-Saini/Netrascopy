@@ -48,7 +48,7 @@ const config = {
   authRequired: false,
   auth0Logout: true,
   secret: 'a long, randomly-generated string stored in env',
-  baseURL: 'https://netrascopy.onrender.com',
+  baseURL: 'http://localhost:9200',
   clientID: 'Vjq6fbuba65JwyPOrEaShTFUPGkGxcq3',
   issuerBaseURL: 'https://dev-hri34pn2.us.auth0.com'
 };
@@ -129,6 +129,12 @@ app.post("/predict", requiresAuth(),function(req, res){
       var link2= obj[1]
       var link3= obj[2]
       var link4= obj[3]
+      var link5=obj[4]
+      var link6=obj[5]
+      var link7=obj[6]
+      var link8=obj[7]
+      var link9=obj[8]
+      var link10=obj[9]
         var options = {
           'method': 'POST',
           'url': 'http://127.0.0.1:5000/predict',
@@ -139,6 +145,12 @@ app.post("/predict", requiresAuth(),function(req, res){
             'url2':link2,
             'url3':link3,
             'url4':link4,
+            'url5':link5,
+            'url6':link6,
+            'url7':link7,
+            'url8':link8,
+            'url9':link9,
+            'url10':link10,
           }
         };
         request(options, function (error, response) {
@@ -153,7 +165,7 @@ app.post("/predict", requiresAuth(),function(req, res){
           var threes= cjs.threes;
           var fours= cjs.fours;
         var value1="nul"
-        var description1= `From ${zeros+ones+twos+threes+fours} test cases you were diagnosed with Proliferated Diabetic Retinopathy in ${fours} test cases, Mild Diabetic Retinopathy in ${ones} test cases, Moderate Diabetic Retinopathy in ${twos}, Severe Diabetic Retinopathy in ${threes}, Proliferated Diabetic Retinopathy in ${fours} test cases.`
+        var description1= `From ${zeros+ones+twos+threes+fours} test cases you were diagnosed with No DR in ${zeros} test cases, Proliferated Diabetic Retinopathy in ${fours} test cases, Mild Diabetic Retinopathy in ${ones} test cases, Moderate Diabetic Retinopathy in ${twos}, Severe Diabetic Retinopathy in ${threes}, Proliferated Diabetic Retinopathy in ${fours} test cases.`
         if (zeros>ones && zeros>twos && zeros>threes &&zeros>fours){
           var value1="YOU HAVE NO DIABETIC RATINOPATHY. No need to worry, just take a balanced diet and avoid access sugar intake."
         }
@@ -221,6 +233,12 @@ app.get('/diagnosis',requiresAuth(),function (req,res){
     })
   }).sort({date:"desc"})
 });
+
+app.get('/research-paper',function(req,res){
+  res.render('research-paper',{
+    text: req.oidc.isAuthenticated() ? 'LOGOUT' : 'LOGIN',
+  });
+})
 
 app.listen(port, function() {
     console.log(`Server started sucessfully at` + {port});

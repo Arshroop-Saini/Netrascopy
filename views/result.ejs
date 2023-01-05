@@ -10,6 +10,7 @@
       <li><a href="/">Home</a></li>
       <li><a href="/predict">Predict</a></li>
       <li><a href="/diagnosis">Diagnosis</a></li>
+      <li><a href="/research-paper">Research</a></li>
       <li><a class="btn btn-primary logout" href="/<%=text%>"><%=text%></a></li>
   </nav>
 
@@ -21,7 +22,10 @@
     <h2><%=answer%></h2>
     <p><%=description%></p>
     <br>
-    <video src="<%=url%>" alt="This is an image" height="400px">
+    <video controls muted loop width="400" height="400" autoplay>
+      <source src="<%=url%>" type="video/mp4">
+    Your browser does not support the video tag.
+    </video>
 </center>
 </div>
 </div>
