@@ -9,6 +9,9 @@
   },
   "author": "Arshroop Singh Saini, Ansh Tiwari",
   "license": "ISC",
+  "engines": {
+    "node": "14.20.1"
+  },
   "dependencies": {
     "@sentry/node": "^7.19.0",
     "aws-sdk": "^2.1179.0",
